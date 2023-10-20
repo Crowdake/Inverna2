@@ -12,8 +12,23 @@ actor Planta {
 	type plantaId = Nat32;
 	type Planta = {
 		viveroId: Text;
-		dimension: Text;
-		humedad: Text;
+		nombre: Text;
+		nombreCientifico: Text;
+		nitrogeno: Float;
+		fosforo: Float;
+		potasio: Float;
+		calcio: Float;
+		magnesio: Float;
+		zinc: Float;
+		boro: Float;
+		molibdeno: Float;
+		manganeso: Float;
+		cloro: Float;
+		cobre: Float;
+		co2: Float;
+		h2o: Float;
+		humedad: Float;
+		
 	};
 
 	stable var plantaId: plantaId = 0;
@@ -24,11 +39,11 @@ actor Planta {
 		return plantaId;
 	};
 
-	public shared (msg) func createPlant(viveroId: Text, dimension: Text, humedad: Text) : async () {
-  let planta = {viveroId=viveroId; dimension=dimension; humedad=humedad};
+	public shared (msg) func createPlant(viveroId: Text, nombre: Text, nombreCientifico: Text, nitrogeno: Float, fosforo: Float, potasio: Float, calcio: Float, magnesio: Float, zinc: Float, boro: Float, molibdeno: Float, manganeso: Float, cloro: Float, cobre: Float, co2: Float, h2o: Float, luz: Float, humedad: Float) : async () {
+  let planta = {viveroId=viveroId; nombre=nombre; nombreCientifico=nombreCientifico; nitrogeno=nitrogeno; fosforo=fosforo; potasio=potasio; calcio=calcio; magnesio=magnesio; zinc=zinc; boro=boro; molibdeno=molibdeno; manganeso=manganeso; cloro=cloro; cobre=cobre; co2=co2; h2o=h2o; luz=luz; humedad=humedad};
   
   // Verificar si el vivero existe
-  let vivero: ?Vivero.Vivero = await Vivero.obtenerPost(viveroId);
+  let vivero: ?Vivero.Vivero = await Vivero.obtenerVivero(viveroId);
   switch (vivero) {
     case (null) {
       Debug.print("El vivero con el ID especificado no existe");
@@ -43,27 +58,28 @@ actor Planta {
   };
 };
 
-	public query func getPlantas () : async [(Text, Planta)] {
+	public query func obtenerPlantas () : async [(Text, Planta)] {
 		let plantaIter : Iter.Iter<(Text, Planta)> = plantaList.entries();
 		let plantaArray : [(Text, Planta)] = Iter.toArray(plantaIter);
 
 		return plantaArray;
 	};
 
-	public query func getPlanta (id: Text) : async ?Planta {
+	public query func obtenerPlanta (id: Text) : async ?Planta {
 		let planta: ?Planta = plantaList.get(id);
 		return planta;
 	};
 
-	public shared (msg) func actualizarPlanta (id: Text, viveroId: Text, dimension: Text, humedad: Text) : async Bool {
+	public shared (msg) func actualizarPlanta (id: Text, viveroId: Text, nombre: Text, nombreCientifico: Text, nitrogeno: Float, fosforo: Float, potasio: Float, calcio: Float, magnesio: Float, zinc: Float, boro: Float, molibdeno: Float, manganeso: Float, cloro: Float, cobre: Float, co2: Float, h2o: Float, luz: Float, humedad: Float) : async Bool {
 		let planta: ?Planta = plantaList.get(id);
+		
 
 		switch (planta) {
 			case (null) {
 				return false;
 			};
 			case (?currentPost) {
-				let nuevaPlanta: Planta = {viveroId=viveroId; dimension=dimension; humedad=humedad};
+				let nuevaPlanta: Planta = {viveroId=viveroId; nombre=nombre; nombreCientifico=nombreCientifico; nitrogeno=nitrogeno; fosforo=fosforo; potasio=potasio; calcio=calcio; magnesio=magnesio; zinc=zinc; boro=boro; molibdeno=molibdeno; manganeso=manganeso; cloro=cloro; cobre=cobre; co2=co2; h2o=h2o; luz=luz; humedad=humedad};
 				plantaList.put(id, nuevaPlanta);
 				Debug.print("Updated planta with ID: " # id);
 				return true;

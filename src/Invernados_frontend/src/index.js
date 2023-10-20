@@ -1,4 +1,3 @@
-import { Invernados_backend } from "../../declarations/Invernados_backend";
 
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
