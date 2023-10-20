@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "Invernados_backend": {
+      "main": "src/Invernados_backend/main.mo",
+      "type": "motoko"
+    },
+    "Invernados_frontend": {
+      "dependencies": [
+        "Invernados_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/Invernados_frontend/src/index.html"
+      },
+      "source": [
+        "src/Invernados_frontend/assets",
+        "dist/Invernados_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
