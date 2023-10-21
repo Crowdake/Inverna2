@@ -4,6 +4,7 @@ import Nat32 "mo:base/Nat32";
 import Debug "mo:base/Debug";
 import Iter "mo:base/Iter";
 import Float "mo:base/Float";
+
 actor Vivero {
   type ViveroId = Nat32;
   public type Vivero = {
@@ -16,6 +17,9 @@ actor Vivero {
     tempAmbiente: Float;
     descripcion: Text;
   };
+  
+
+
 
   stable var viveroId: ViveroId = 0;
   let viveroList = HashMap.HashMap<Text, Vivero>(0, Text.equal, Text.hash);

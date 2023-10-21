@@ -1,34 +1,34 @@
 {
-  "canisters": {
-    "planta": {
-      "main": "src/canisters/planta/main.mo",
-      "type": "motoko"
-    },
-    "vivero": {
-      "main": "src/canisters/vivero/main.mo",
-      "type": "motoko"
-    },
-    "Invernados_frontend": {
-      "dependencies": [
-        "vivero",
-        "planta"
-      ],
-      "frontend": {
-        "entrypoint": "src/Invernados_frontend/src/index.html"
+    "canisters": {
+      "planta": {
+        "main": "src/canisters/planta/main.mo",
+        "type": "motoko"
       },
-      "source": [
-        "src/Invernados_frontend/assets",
-        "dist/Invernados_frontend/"
-      ],
-      "type": "assets"
-    }
-  },
-  "defaults": {
-    "build": {
-      "args": "",
-      "packtool": ""
-    }
-  },
-  "output_env_file": ".env",
-  "version": 1
-}
+      "vivero": {
+        "main": "src/canisters/vivero/main.mo",
+        "type": "motoko"
+      },
+      "Invernados_frontend": {
+        "dependencies": [
+          "vivero",
+          "planta"
+        ],
+        "frontend": {
+          "entrypoint": "src/Invernados_frontend/src/index.html"
+        },
+        "source": [
+          "src/Invernados_frontend/assets",
+          "dist/Invernados_frontend/"
+        ],
+        "type": "assets"
+      }
+    },
+    "defaults": {
+      "build": {
+        "args": "",
+        "packtool": ""
+      }
+    },
+    "output_env_file": ".env",
+    "version": 1
+  }

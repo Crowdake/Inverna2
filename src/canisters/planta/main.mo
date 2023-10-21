@@ -65,6 +65,8 @@ actor Planta {
 		return plantaArray;
 	};
 
+	
+
 	public query func obtenerPlanta (id: Text) : async ?Planta {
 		let planta: ?Planta = plantaList.get(id);
 		return planta;
